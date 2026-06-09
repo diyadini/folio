@@ -191,7 +191,7 @@ ul {
 }
 
 .highlight {
-  color: var(--primary);
+  color: var(--pri-high);
   font-weight: 600;
 }
 
