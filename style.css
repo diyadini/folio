@@ -173,7 +173,7 @@ ul {
 
 .hero-tag {
   font-size: var(--h3);
-  color: var(--ink-muted);
+  color: var(--ink);
 }
 
 .hero-name {
@@ -186,18 +186,18 @@ ul {
 
 .hero-role {
   font-size: var(--h3);
-  color: var(--ink-muted);
+  color: var(--ink);
   margin-bottom: var(--s16);
 }
 
 .highlight {
-  color: var(--pri-high3.);
+  color: var(--primary);
   font-weight: 600;
 }
 
 .hero-bio {
   max-width: 52ch;
-  color: var(--ink-muted);
+  color: var(--ink);
   margin-bottom: var(--s32);
 }
 
