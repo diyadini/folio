@@ -191,7 +191,7 @@ ul {
 }
 
 .highlight {
-  color: var(--pri-high);
+  color: var(--pri-high3.);
   font-weight: 600;
 }
 
@@ -298,6 +298,27 @@ padding: var(--s12) var(--s24);
 .card-link {
   font-weight: 600;
   color: var(--primary);
+}
+/*----------blog content-----------*/
+.blog-grid {
+  display: grid;
+  /* Creates 3 equal columns */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px;
+  padding: 20px;
+}
+
+.blog-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Optional: Make it responsive for smaller screens */
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr; /* Stacks cards on smaller screens */
+  }
 }
 
 /* ------------ 8. SKILLS / CONTACT / FOOTER ------------ */
