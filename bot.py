@@ -5,6 +5,10 @@
 
 import requests
 from datetime import date
+import os
+import smtplib
+from email.mime.text import MIMEText
+import os
 
 # --- FUNCTION 1: Weather ---
 def get_weather(city="Thiruvananthapuram"):
@@ -74,3 +78,18 @@ def run():
 # Does NOT run when another file imports bot.py
 if __name__ == "__main__":
     run()
+api_key = os.environ.get("WEATHER_API_KEY")
+def send_email(summary_text):
+    sender = os.environ.get("EMAIL_SENDER")
+    password = os.environ.get("EMAIL_PASSWORD") # Gmail App Password
+    receiver = os.environ.get("EMAIL_RECEIVER")
+
+    msg = MIMEText(summary_text)
+    msg['Subject'] = "Pulse - Daily Summary"
+    msg['From'] = sender
+    msg['To'] = receiver
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+        server.login(sender, password)
+        server.send_message(msg)
+        print("Email sent.")
