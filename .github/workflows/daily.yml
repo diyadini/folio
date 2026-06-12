@@ -1,5 +1,10 @@
 # The workflow name - appears in the GitHub Actions tab
-name: Pulse - Daily Summary Bot
+
+ - name: Run Pulse bot
+  env:
+     WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+  run: python bot.py
+
 
 # When to run this workflow
 on:
@@ -40,3 +45,4 @@ jobs:
         with:
           name: daily-summary
           path: daily_summary.txt
+     
