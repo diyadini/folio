@@ -30,6 +30,18 @@ def get_quote():
         return f'"{quote}" - {author}'
     except Exception as e:
         return f"Quote unavailable ({e})"
+    #----Function 4.the history fact----------#
+    def get_history_fact():
+        try:
+            url="https://history.muffinlabs.com/date"
+            response=requests.get(url,timeout=10)
+            data=response.json()
+            event=data['data']['events'][0]['text']
+            return f"On this day:{event}
+        except Exception as e:
+            return f"History fact unavailable ({e})"
+    
+
 
 # --- FUNCTION 3: Build the summary ---
 def build_summary():
@@ -37,6 +49,7 @@ def build_summary():
     today = date.today().strftime('%A, %d %B %Y')
     weather = get_weather()
     quote = get_quote()
+    history=get_history_fact()
 
     # Triple quoted strings span multiple lines - great for formatted output
     summary = f"""
@@ -50,6 +63,9 @@ WEATHER
 
 TODAY'S QUOTE
 {quote}
+
+THIS DAY IN HISTORY
+{history}
 
 =========================================
 """
