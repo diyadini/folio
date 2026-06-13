@@ -14,11 +14,19 @@ api_key = os.environ.get("WEATHER_API_KEY")
 # --- FUNCTION 1: Weather ---
 def get_weather(city="Thiruvananthapuram"):
     """Fetch today's weather as a one-line text summary."""
-    url = f"https://wttr.in/{city}?format=3"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
-        return response.text.strip()
+        return response.json()
+
+        # Inside your script:
+        temp_celsius = kelvin - 273.15
+        condition = weather_data['weather'][0]['main'] # Example: "Rain"
+
+        if temp_celsius > 35 or condition == "Rain":
+          send_email(f"Alert: Weather is {temp_celsius}°C and it is {condition}!")
+          print("Alert send")
     except Exception as e:
         return f"Weather unavailable ({e})"
 
