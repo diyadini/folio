@@ -36,6 +36,11 @@ jobs:
       - name: Run Pulse bot
         env:
              WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+            
+             EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+             EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+             EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+      
         run: python bot.py
 
       # Step 5: Save the output file so you can download it
