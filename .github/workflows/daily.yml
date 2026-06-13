@@ -1,9 +1,6 @@
 # The workflow name - appears in the GitHub Actions tab
 
- - name: Run Pulse bot
-  env:
-     WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
-  run: python bot.py
+name:Pulse-Daily Summary Bot
 
 
 # When to run this workflow
@@ -37,6 +34,8 @@ jobs:
 
       # Step 4: Run your bot
       - name: Run Pulse bot
+        env:
+             WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
         run: python bot.py
 
       # Step 5: Save the output file so you can download it
