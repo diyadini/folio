@@ -52,6 +52,7 @@ def build_summary():
     today = date.today().strftime('%A, %d %B %Y')
     weather = get_weather()
     quote = get_quote()
+    history=get_history_fact()
 
     # Triple quoted strings span multiple lines - great for formatted output
     summary = f"""
