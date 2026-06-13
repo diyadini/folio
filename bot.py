@@ -39,14 +39,16 @@ def get_history_fact():
     try:
         url="https://history.muffinlabs.com/date"
         response=requests.get(url,timeout=10)
+        response.raise_for_status()
         data=response.json()
-        if events:
-            event=events[0]['text']
-            return f"On this day:{event}"
+        events_list=data['data']['Events']
+        if events_list:
+            event_text=events_list[0]['text']
+            return f"On this day:{event_text}"
         else:
             return "History fact:No events found for today."
     except Exception as e:
-        return f"History fact unavailable ({e})"
+        return f"History fact unavailable {e}"
     
 
 # --- FUNCTION 3: Build the summary ---
