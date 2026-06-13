@@ -14,7 +14,7 @@ api_key = os.environ.get("WEATHER_API_KEY")
 # --- FUNCTION 1: Weather ---
 def get_weather(city="Thiruvananthapuram"):
     """Fetch today's weather as a one-line text summary."""
-    url = f"https://openweathermap.org/"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q=Thiruvananthapuram&appid={api_key}"
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
