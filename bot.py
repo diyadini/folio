@@ -92,6 +92,7 @@ def run():
     # Save to a file uploaded as a downloadable artifact by the workflow
     with open('daily_summary.txt', 'w', encoding='utf-8') as f:
         f.write(summary)
+    send_email(summary)
 
     print("Pulse ran successfully.")
 
