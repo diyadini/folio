@@ -11,20 +11,6 @@ from email.mime.text import MIMEText
 import os
 api_key = os.environ.get("WEATHER_API_KEY")
 
-from bs4 import BeautifulSoup # Add this to your imports
-
-def get_news_headlines():
-    # Example using a site that allows scraping
-    url = "https://news.ycombinator.com/" 
-    try:
-        response = requests.get(url, timeout=10)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        # Scrape titles from Hacker News
-        headlines = [item.text for item in soup.select('.titleline > a')[:5]]
-        return headlines
-    except Exception as e:
-        return [f"Error fetching news: {e}"]
-
 # --- FUNCTION 1: Weather ---
 def get_weather(city="Thiruvananthapuram"):
     """Fetch today's weather as a one-line text summary."""
@@ -81,26 +67,6 @@ def build_summary():
     weather = get_weather()
     quote = get_quote()
     history=get_history_fact()
-    headlines = get_news_headlines()
-
-    # Build the HTML string
-    html = f"<html><body>"
-    html += f"<h1>Pulse Daily Summary - {today}</h1>"
-    
-    html += f"<h2>Weather</h2><p>Temp: {weather_temp:.1f}°C, Condition: {weather_cond}</p>"
-    
-    html += f"<h2>Quote of the Day</h2><p><i>{quote}</i></p>"
-    
-    html += f"<h2>This Day in History</h2><p>{history}</p>"
-    
-    html += "<h2>Top News</h2><ul>"
-    for h in headlines:
-        html += f"<li>{h}</li>"
-    html += "</ul>"
-    
-    html += "</body></html>"
-    
-    return html
 
     # Triple quoted strings span multiple lines - great for formatted output
     summary = f"""
@@ -126,12 +92,11 @@ THIS DAY IN HISTORY
     
 #----send email defined--------#
 def send_email(summary_text):
-   def send_email(subject, html_content):
     sender = os.environ.get("EMAIL_SENDER")
     password = os.environ.get("EMAIL_PASSWORD")
     receiver = os.environ.get("EMAIL_RECEIVER")
     
-    msg = MIMEText(html_content, 'html') # Set type to 'html'
+    msg = MIMEText(summry_content) # Set type to 'html'
     msg['Subject'] = subject
     msg['From'] = sender
     msg['To'] = receiver
@@ -139,6 +104,7 @@ def send_email(summary_text):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
         server.login(sender, password)
         server.send_message(msg) 
+    print("Email sent.")
  
 
 
