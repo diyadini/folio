@@ -96,7 +96,7 @@ def send_email(summary_text):
     password = os.environ.get("EMAIL_PASSWORD")
     receiver = os.environ.get("EMAIL_RECEIVER")
     
-    msg = MIMEText(summry_text) # Set type to 'html'
+    msg = MIMEText(summary_text) 
     msg['Subject'] = subject
     msg['From'] = sender
     msg['To'] = receiver
