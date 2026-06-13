@@ -41,7 +41,7 @@ def get_quote():
             response=requests.get(url,timeout=10)
             data=response.json()
             event=data['data']['events'][0]['text']
-            return f"On this day:{event}
+            return f"On this day:{event}"
         except Exception as e:
             return f"History fact unavailable ({e})"
     
